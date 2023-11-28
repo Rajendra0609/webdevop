@@ -25,9 +25,10 @@ Put all the web page code file into github
 - Create a Docker file into github
  ```sh
 FROM centos:latest
-MAINTAINER choudharysirvi1212@gmail.com
-RUN yum install httpd git -y
-RUN git clone https://github.com/praveensirvi1212/webdev /var/www/html
+MAINTAINER rajendra.daggubati@gmail.com
+RUN yum install httpd -y
+RUN yum install git -y
+RUN git clone https://github.com/Rajendra0609/webdevop /var/www/html
 WORKDIR /var/www/html
 CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
 EXPOSE 80
@@ -54,11 +55,11 @@ EXPOSE 80
        - Exec Command: 
 	      - `cd /opt/docker`
           - `docker image build -t $JOB_NAME:v1.$BUILD_ID .`
-	      - `docker image tag $JOB_NAME:v1.$BUILD_ID praveensirvi/$JOB_NAME:v1.$BUILD_ID`
-          - `docker image tag $JOB_NAME:v1.$BUILD_ID praveensirvi/$JOB_NAME:latest`
-          - `docker image push praveensirvi/$JOB_NAME:v1.$BUILD_ID`
-          - `docker image push praveensirvi/$JOB_NAME:latest`
-          - `docker image rmi $JOB_NAME:v1.$BUILD_ID praveensirvi/$JOB_NAME:v1.$BUILD_ID praveensirvi/$JOB_NAME:latest`
+	      - `docker image tag $JOB_NAME:v1.$BUILD_ID raja/$JOB_NAME:v1.$BUILD_ID`
+          - `docker image tag $JOB_NAME:v1.$BUILD_ID raja/$JOB_NAME:latest`
+          - `docker image push raja/$JOB_NAME:v1.$BUILD_ID`
+          - `docker image push raja/$JOB_NAME:latest`
+          - `docker image rmi $JOB_NAME:v1.$BUILD_ID raja/$JOB_NAME:v1.$BUILD_ID raja/$JOB_NAME:latest`
 
  So for we used latest docker image to build a container, but what happens if latest version is not working?  
  One easiest solution is, maintaining version for each build. This can be achieved by using environment variables. 
