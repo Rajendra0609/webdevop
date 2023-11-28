@@ -103,7 +103,7 @@ ansible-playbook webdev/webapp.yml
           - name: remove docker image
             shell: docker image rm praveensirvi/web
           - name: docker container create
-            shell: docker run -d --name myweb -p 8080:80 praveensirvi/web
+            shell: docker run -d --name myweb -p 8080:80 daggu1997/webdev
    
    ```
 Troubleshooting: 
@@ -112,7 +112,7 @@ Makesure you have opened required ports on AWS Security group for this server.
 ### Stage-05 : Apache_server
 1. Install Docker and start Docker daemon 
 ### Final output :
-![](https://github.com/praveensirvi1212/webdev/blob/main/img/finalop1.JPG) 
+![](https://github.com/Rajendra0609/webdevop/webdev/blob/main/img/finalop1.JPG) 
  
 ##### References
 [1] - [Jenkins Docs - Building Software Projects](https://wiki.jenkins.io/display/JENKINS/Building+a+software+project)
