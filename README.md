@@ -19,7 +19,7 @@ In this project, we will be see how to *use Git, Jenkins, Ansible, DockerHub, Do
 ### Stage-01 : Create a web page
 Put all the web page code file into github
 
-![](https://github.com/praveensirvi1212/webdev/blob/main/img/Capture6.JPG) 
+![](https://github.com/Rajendra0609/webdevop/blob/main/img/Capture6.JPG) 
 
 ### Stage-02 : Create a Docker file 
 - Create a Docker file into github
@@ -40,26 +40,27 @@ EXPOSE 80
 1. Login to Jenkins console
 1. Create *Jenkins job with free style*, Fill the following details,
    - *Source Code Management:*
-      - Repository : `https://github.com/praveensirvi1212/Docker.git`
-      - Branches to build : `*/main`  
+      - Repository : `https://github.com/Rajendra0609/webdevop.git`
+      - Branches to build : `*/dev`  
   
    - *Build:*
      - *Send files or execute commands over SSH*
        - Name: `jenkins_server`
        - Exec Command: 
-	      - `rsync -avh /var/lib/jenkins/workspace/web/Dockerfile root@ansible-server's_private-ip:/opt`
+	      - `sshpass -p 'raja' rsync -avh /var/lib/jenkins/workspace/webdev/Dockerfile raja@192.168.26.129:/home/raja/raja`
           
 
      - *Send files or execute commands over SSH*
        - Name: `ansible_server`
        - Exec Command: 
 	      - `cd /opt/docker`
-          - `docker image build -t $JOB_NAME:v1.$BUILD_ID .`
-	      - `docker image tag $JOB_NAME:v1.$BUILD_ID raja/$JOB_NAME:v1.$BUILD_ID`
-          - `docker image tag $JOB_NAME:v1.$BUILD_ID raja/$JOB_NAME:latest`
-          - `docker image push raja/$JOB_NAME:v1.$BUILD_ID`
-          - `docker image push raja/$JOB_NAME:latest`
-          - `docker image rmi $JOB_NAME:v1.$BUILD_ID raja/$JOB_NAME:v1.$BUILD_ID raja/$JOB_NAME:latest`
+          - cd /home/raja/raja
+docker build -t $JOB_NAME:v1.$BUILD_ID .
+docker tag $JOB_NAME:v1.$BUILD_ID daggu1997/$JOB_NAME:v1.$BUILD_ID
+docker tag $JOB_NAME:v1.$BUILD_ID daggu1997/$JOB_NAME:latest
+docker rmi  daggu1997/$JOB_NAME:v1.$BUILD_ID
+docker push daggu1997/$JOB_NAME:latest
+ansible-playbook webdev/webapp.yml
 
  So for we used latest docker image to build a container, but what happens if latest version is not working?  
  One easiest solution is, maintaining version for each build. This can be achieved by using environment variables. 
